@@ -65,14 +65,14 @@ public class KDDragAndDropManager: NSObject, UIGestureRecognizerDelegate {
     }
     var bundle : Bundle?
     
-    public init(canvas : UIView, collectionViews : [UIView]) {
+    public init(canvas : UIView, collectionViews : [UIView], longPressDelay: TimeInterval = 0.3) {
         
         super.init()
         
         self.canvas = canvas
         
         self.longPressGestureRecogniser.delegate = self
-        self.longPressGestureRecogniser.minimumPressDuration = 0.3
+        self.longPressGestureRecogniser.minimumPressDuration = longPressDelay
         self.longPressGestureRecogniser.addTarget(self, action: #selector(KDDragAndDropManager.updateForLongPress(_:)))
         self.canvas.isMultipleTouchEnabled = false
         self.canvas.addGestureRecognizer(self.longPressGestureRecogniser)
